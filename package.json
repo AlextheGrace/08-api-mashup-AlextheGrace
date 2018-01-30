@@ -1,0 +1,29 @@
+{
+  "name": "08-api-mashup-alexthegrace",
+  "version": "1.0.0",
+  "description": "08 api mashup by alexthegrace for chas academy class assignment",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chas-academy/08-api-mashup-AlextheGrace.git"
+  },
+  "keywords": [
+    "api",
+    "fetch",
+    "webpack",
+    "bootsrap",
+    "flickr",
+    "js",
+    "css",
+    "sass"
+  ],
+  "author": "alexthegrace",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chas-academy/08-api-mashup-AlextheGrace/issues"
+  },
+  "homepage": "https://github.com/chas-academy/08-api-mashup-AlextheGrace#readme"
+}
