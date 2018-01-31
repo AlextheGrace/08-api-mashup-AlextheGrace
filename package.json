@@ -4,6 +4,7 @@
   "description": "08 api mashup by alexthegrace for chas academy class assignment",
   "main": "app.js",
   "scripts": {
+    "start": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -25,5 +26,18 @@
   "bugs": {
     "url": "https://github.com/chas-academy/08-api-mashup-AlextheGrace/issues"
   },
-  "homepage": "https://github.com/chas-academy/08-api-mashup-AlextheGrace#readme"
+  "homepage": "https://github.com/chas-academy/08-api-mashup-AlextheGrace#readme",
+  "devDependencies": {
+    "autoprefixer": "^7.2.5",
+    "bootstrap": "^4.0.0",
+    "browser-sync": "^2.23.6",
+    "browser-sync-webpack-plugin": "^1.2.0",
+    "css-loader": "^0.28.9",
+    "jquery": "^3.3.1",
+    "popper.js": "^1.12.9",
+    "postcss-loader": "^2.0.10",
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.20.1"
+  },
+  "dependencies": {}
 }
