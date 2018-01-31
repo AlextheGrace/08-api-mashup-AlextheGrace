@@ -12899,42 +12899,39 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
-
-
 //doesnt work as class property so i have the searchinput globally(does this depend on webpack?)
-let searchQuery = document.querySelector('#search-query');
+
 
 class MashedApi {
-	constructor() {
+  constructor(element) {
+    let _this = this;
+    this.root = element;
+    this.addEventListeners();
+  }
 
-        this.addEventListeners();
-    }
-    fetchFlickrRequest(input){
-        console.log(input);
-    }
+  addEventListeners() {
+    const search = document.querySelector('#search-query');
+    const searchButton = document.querySelector('#search-button');
+    searchButton.addEventListener('click', () => {
+      this.fetchFlickrRequest(search.value);
+    });
+  }
 
-    addEventListeners() {
-        this.search = document.querySelector('#search-query').textContent;
-		this.searchButton = document.querySelector('#search-button');
-        this.searchButton.addEventListener('click', function() {
-            this.fetchFlickrRequest(searchQuery);
-        });
-        
-    }
+  fetchFlickrRequest(input) {
+    console.log(input);
+  }
 
-   
-	getSearchQuery() {
-		let query = searchQuery.value;
-		if (!query.length) {
-			return;
-		}
-	}
+  getSearchQuery() {
+    let query = search.value;
+    if (!query.length) {
+      return;
+    }
+  }
 }
 
-(function() {
-	let go = new MashedApi();
+(function () {
+  let go = new MashedApi(document.querySelector('#page'));
 })();
-
 
 /***/ }),
 /* 3 */

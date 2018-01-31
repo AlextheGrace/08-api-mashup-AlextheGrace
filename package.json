@@ -32,6 +32,7 @@
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.1",
+    "babel-preset-es2015-webpack": "^6.4.3",
     "bootstrap": "^4.0.0",
     "browser-sync": "^2.23.6",
     "browser-sync-webpack-plugin": "^1.2.0",
@@ -43,5 +44,7 @@
     "sass-loader": "^6.0.6",
     "style-loader": "^0.20.1"
   },
-  "dependencies": {}
+  "dependencies": {
+    "webpack": "^3.10.0"
+  }
 }
