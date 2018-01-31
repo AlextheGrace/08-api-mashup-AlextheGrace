@@ -33,6 +33,7 @@
     "browser-sync": "^2.23.6",
     "browser-sync-webpack-plugin": "^1.2.0",
     "css-loader": "^0.28.9",
+    "dotenv-webpack": "^1.5.4",
     "jquery": "^3.3.1",
     "popper.js": "^1.12.9",
     "postcss-loader": "^2.0.10",
