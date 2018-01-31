@@ -12893,7 +12893,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_bootstrap_dist_css_bootstrap_min_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_bootstrap_dist_css_bootstrap_min_css__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_bootstrap__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_bootstrap___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_bootstrap__);
-//dependencies
+//bootstrap dependencies
 
 
 
@@ -12914,6 +12914,7 @@ class MashedApi {
     const searchButton = document.querySelector('#search-button');
     searchButton.addEventListener('click', () => {
       this.fetchFlickrRequest(search.value);
+      //this.fetchSynonymsRequest(search.value);
     });
   }
 

@@ -24,7 +24,7 @@ class MashedApi {
 		const searchButton = document.querySelector('#search-button');
         searchButton.addEventListener('click', () => {
                 this.fetchFlickrRequest(search.value);
-                this.fetchSynonymsRequest(search.value);
+                //this.fetchSynonymsRequest(search.value);
         });
         
     }
