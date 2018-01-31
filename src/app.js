@@ -1,4 +1,4 @@
-//dependencies
+//bootstrap dependencies
 import 'popper.js';
 import 'jquery';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -24,6 +24,7 @@ class MashedApi {
 		const searchButton = document.querySelector('#search-button');
         searchButton.addEventListener('click', () => {
                 this.fetchFlickrRequest(search.value);
+                this.fetchSynonymsRequest(search.value);
         });
         
     }
