@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap';
 
 /*the axel function which turns jsobject into a long url string.
-  i want to learn this to i should brush up on js array manipulation and objekt.key function */
+  i want to learn this to i should brush up on js array manipulation and  theobject.key function */
 
 import { axelVisar } from './axelmachine.js';
 
@@ -23,7 +23,7 @@ class MashedApi {
 		const searchButton = document.querySelector('#search-button');
 		searchButton.addEventListener('click', () => {
 			this.fetchFlickrRequest(search.value);
-			//this.fetchSynonymsRequest(search.value);
+			this.fetchSynonymsRequest();
 		});
 	}
 
@@ -70,6 +70,29 @@ class MashedApi {
 		return fetch(flickrUrl).then(res => res.json()).then(res => {
 			this.renderFlickrImages(res.photos.photo);
 		});
+
+		
+
+
+	}
+	fetchSynonymsRequest() {
+
+		let wordApiBaseURL = `http://words.bighugelabs.com/api/2/`,
+		wordapikey = `24ab9280fa062ba3076b0ea31a378166`,
+		
+		apiWordInput = `/eat/json`;
+
+
+		let synonymURL = `${wordApiBaseURL}${wordapikey}${apiWordInput}`;
+
+
+		return fetch(synonymURL).then(res => {
+			res.json.then(data => console.log(data));
+		});
+
+
+
+		
 	}
 }
 
