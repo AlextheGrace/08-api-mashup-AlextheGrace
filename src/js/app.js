@@ -87,7 +87,7 @@ class MashedApi {
 
 
 		return fetch(synonymURL).then(res => {
-			res.json.then(data => console.log(data));
+			res.json().then(data => console.log(data.verb.syn));
 		});
 
 
