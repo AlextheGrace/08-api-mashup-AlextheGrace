@@ -2,7 +2,7 @@ var BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 
 module.exports = {
-    entry: "./src/app.js",
+    entry: "./src/js/app.js",
     output: {
         filename: './dist/bundle.js'
     },
