@@ -35,10 +35,10 @@ class MashedApi
 
 	}
 
-	addEventListenerToWords() {
-		wordList.addEventListener('click',(event) => {
-			this.RequestFromSynonyms(event)
-		});
+	fetchOnSynonyms(word) {
+		this.fetchFlickrRequest(word.target.textContent);
+		this.fetchSynonymsRequest(word.target.textContent);
+	
 	}
 
 	getSearchQuery() {
@@ -67,15 +67,18 @@ class MashedApi
 		wordContainer.innerHTML = '';
 		let wordUl = document.createElement("ul");
 		wordUl.classList.add('list-group');
+
 		words.map(function (word) {
 			let li = document.createElement('button');
 			li.classList.add("list-group-item");
 			li.textContent = word;
 			wordUl.appendChild(li);
 			
-			return wordContainer.appendChild(wordUl).addEventListener("click",(event) => {
-				console.log("clicked")
-			})
+			return wordContainer.appendChild(wordUl);
+			
+		});
+		wordUl.addEventListener("click",(event) => {
+			this.fetchOnSynonyms(event);
 		});
 	}
 
