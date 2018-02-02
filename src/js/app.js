@@ -13,7 +13,8 @@ import {
 
 //doesnt work as class property so i have the searchinput globally(does this depend on webpack?)
 
-class MashedApi {
+class MashedApi
+{
 	constructor(element) {
 		let _this = this;
 		this.root = element;
@@ -23,9 +24,20 @@ class MashedApi {
 	addEventListeners() {
 		const search = document.querySelector('#search-query');
 		const searchButton = document.querySelector('#search-button');
+		const wordList = document.querySelector('.list-group');
+
 		searchButton.addEventListener('click', () => {
 			this.fetchFlickrRequest(search.value);
 			this.fetchSynonymsRequest(search.value);
+		});
+		
+		
+
+	}
+
+	addEventListenerToWords() {
+		wordList.addEventListener('click',(event) => {
+			this.RequestFromSynonyms(event)
 		});
 	}
 
@@ -53,12 +65,17 @@ class MashedApi {
 	renderSynonyms(words) {
 		const wordContainer = document.querySelector('#words-container');
 		wordContainer.innerHTML = '';
-		let wordUl = document.createElement("ul")
+		let wordUl = document.createElement("ul");
+		wordUl.classList.add('list-group');
 		words.map(function (word) {
-			let li = document.createElement('li');
+			let li = document.createElement('button');
+			li.classList.add("list-group-item");
 			li.textContent = word;
 			wordUl.appendChild(li);
-			return wordContainer.appendChild(wordUl);	
+			
+			return wordContainer.appendChild(wordUl).addEventListener("click",(event) => {
+				console.log("clicked")
+			})
 		});
 	}
 
@@ -101,12 +118,15 @@ class MashedApi {
 
 
 		return fetch(synonymURL).then(res => {
-			res.json().then(data => { this.renderSynonyms(data.noun)});
+			res.json().then(data => { 
+				this.renderSynonyms(data.noun.syn);
+				console.log(data.noun.syn);
+
+			});
 		});
-
-
-
-
+	}
+	RequestFromSynonyms(wordInput) {
+		console.log(wordInput.target.textContent);
 	}
 }
 
