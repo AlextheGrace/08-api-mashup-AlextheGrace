@@ -7,7 +7,9 @@ import 'bootstrap';
 /*the axel function which turns jsobject into a long url string.
   i want to learn this to i should brush up on js array manipulation and  theobject.key function */
 
-import { axelVisar } from './axelmachine.js';
+import {
+	axelVisar
+} from './axelmachine.js';
 
 //doesnt work as class property so i have the searchinput globally(does this depend on webpack?)
 
@@ -23,7 +25,7 @@ class MashedApi {
 		const searchButton = document.querySelector('#search-button');
 		searchButton.addEventListener('click', () => {
 			this.fetchFlickrRequest(search.value);
-			this.fetchSynonymsRequest();
+			this.fetchSynonymsRequest(search.value);
 		});
 	}
 
@@ -35,15 +37,28 @@ class MashedApi {
 	}
 
 	renderFlickrImages(images) {
-		const imageContainer = document.querySelector('.container');
+		const imageContainer = document.querySelector('#images-container');
 		imageContainer.innerHTML = '';
-		images.map(function(pic) {
+		images.map(function (pic) {
 			let image = new Image(200, 200);
 			let link = document.createElement('a');
 			link.setAttribute('href', `${pic.url_o}`);
 			image.src = `${pic.url_o}`;
 			link.append(image);
 			return imageContainer.appendChild(link);
+		});
+	}
+
+
+	renderSynonyms(words) {
+		const wordContainer = document.querySelector('#words-container');
+		wordContainer.innerHTML = '';
+		let wordUl = document.createElement("ul")
+		words.map(function (word) {
+			let li = document.createElement('li');
+			li.textContent = word;
+			wordUl.appendChild(li);
+			return wordContainer.appendChild(wordUl);	
 		});
 	}
 
@@ -71,31 +86,30 @@ class MashedApi {
 			this.renderFlickrImages(res.photos.photo);
 		});
 
-		
+
 
 
 	}
-	fetchSynonymsRequest() {
+	fetchSynonymsRequest(input) {
 
 		let wordApiBaseURL = `http://words.bighugelabs.com/api/2/`,
-		wordapikey = `24ab9280fa062ba3076b0ea31a378166`,
-		
-		apiWordInput = `/eat/json`;
+			wordapikey = `24ab9280fa062ba3076b0ea31a378166`,
+			apiWordInput = `/${input}/json`;
 
 
 		let synonymURL = `${wordApiBaseURL}${wordapikey}${apiWordInput}`;
 
 
 		return fetch(synonymURL).then(res => {
-			res.json().then(data => console.log(data.verb.syn));
+			res.json().then(data => { this.renderSynonyms(data.noun)});
 		});
 
 
 
-		
+
 	}
 }
 
-(function() {
+(function () {
 	let go = new MashedApi(document.querySelector('#page'));
 })();
