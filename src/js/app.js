@@ -3,6 +3,7 @@ import 'popper.js';
 import 'jquery';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap';
+import '../css/override.css';
 
 /*the axel function which turns jsobject into a long url string.
   i want to learn this to i should brush up on js array manipulation and  theobject.key function */
@@ -30,15 +31,11 @@ class MashedApi
 			this.fetchFlickrRequest(search.value);
 			this.fetchSynonymsRequest(search.value);
 		});
-		
-		
-
 	}
 
 	fetchOnSynonyms(word) {
 		this.fetchFlickrRequest(word.target.textContent);
 		this.fetchSynonymsRequest(word.target.textContent);
-	
 	}
 
 	getSearchQuery() {
@@ -65,10 +62,11 @@ class MashedApi
 	renderSynonyms(words) {
 		const wordContainer = document.querySelector('#words-container');
 		wordContainer.innerHTML = '';
+		const header = document.createElement('h5').textContent('did you mean..');
 		let wordUl = document.createElement("ul");
 		wordUl.classList.add('list-group');
 
-		words.map(function (word) {
+		words.map(function (word) {	
 			let li = document.createElement('button');
 			li.classList.add("list-group-item");
 			li.textContent = word;
@@ -77,6 +75,7 @@ class MashedApi
 			return wordContainer.appendChild(wordUl);
 			
 		});
+		//adds event listener to word container after returning appended words
 		wordUl.addEventListener("click",(event) => {
 			this.fetchOnSynonyms(event);
 		});
@@ -105,9 +104,6 @@ class MashedApi
 		return fetch(flickrUrl).then(res => res.json()).then(res => {
 			this.renderFlickrImages(res.photos.photo);
 		});
-
-
-
 
 	}
 	fetchSynonymsRequest(input) {
