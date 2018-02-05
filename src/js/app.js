@@ -3,16 +3,11 @@ import 'popper.js';
 import 'jquery';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap';
-import '../css/override.css';
 
 /*the axel function which turns jsobject into a long url string.
   i want to learn this to i should brush up on js array manipulation and  theobject.key function */
 
-import {
-	axelVisar
-} from './axelmachine.js';
-
-//doesnt work as class property so i have the searchinput globally(does this depend on webpack?)
+import {axelVisar} from './axelmachine.js';
 
 class MashedApi
 {
@@ -62,9 +57,10 @@ class MashedApi
 	renderSynonyms(words) {
 		const wordContainer = document.querySelector('#words-container');
 		wordContainer.innerHTML = '';
-		const header = document.createElement('h5').textContent('did you mean..');
+		const header = document.createElement('h5');
 		let wordUl = document.createElement("ul");
 		wordUl.classList.add('list-group');
+		
 
 		words.map(function (word) {	
 			let li = document.createElement('button');
@@ -103,6 +99,8 @@ class MashedApi
 
 		return fetch(flickrUrl).then(res => res.json()).then(res => {
 			this.renderFlickrImages(res.photos.photo);
+		}).catch( () => {
+			return this.renderNoResults();
 		});
 
 	}
@@ -121,11 +119,23 @@ class MashedApi
 				this.renderSynonyms(data.noun.syn);
 				console.log(data.noun.syn);
 
-			});
+			}).catch( () => {
+			return	this.renderNoResults();
+			})
 		});
 	}
 	RequestFromSynonyms(wordInput) {
 		console.log(wordInput.target.textContent);
+	}
+
+	renderNoResults(){
+		// const WordContainer = document.querySelector('#words-container');
+		// const noResultsHolder = document.createElement("h3");
+		// const noResultsText = document.createTextNode("No Results Found");
+		// noResultsHolder.append(noResultsText);
+
+		 
+		//  console.log("no related searches found");
 	}
 }
 
